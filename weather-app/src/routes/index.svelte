@@ -1,2 +1,18 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  import WeatherCard from '@/src/components/weather-card/index.svelte';
+
+</script>
+
+<main>
+  <WeatherCard />
+</main>
+
+<style>
+  main {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    width: 100%;
+    outline: 2px solid;
+  }
+</style>
