@@ -11,8 +11,7 @@
   main {
     display: grid;
     place-content: center;
-    height: 100%;
-    width: 100%;
-    outline: 2px solid;
+    min-height: 100vh;
+    min-width: 100vw;
   }
 </style>

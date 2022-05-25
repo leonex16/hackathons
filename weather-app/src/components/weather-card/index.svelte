@@ -39,7 +39,6 @@
 
   const { condition, current, location } = data;
   let isDisplayMode = true;
-  let isLowNetwork = true;
 </script>
 
 <article
@@ -50,7 +49,7 @@
     : 'weather-card--close-fullscreen'}
   "
 >
-  <Header bind:isDisplayMode bind:isLowNetwork dayOrNight={current.dayOrNight} />
+  <Header bind:isDisplayMode conditionText={condition.text} dayOrNight={current.dayOrNight} />
 
   <section class="weather-body">
     <header class="weather-body__header {isDisplayMode && 'hidden'}">
@@ -115,6 +114,10 @@
   .weather-card > * {
     position: relative;
     z-index: 2;
+  }
+
+  .weather-card * {
+    user-select: none;
   }
 
   .weather-card::before {
