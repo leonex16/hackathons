@@ -27,6 +27,8 @@
     --on-surface-variant-light: #49454f;
     --inverse-surface-light: #313033;
     --inverse-on-surface-light: #f4eff4;
+    --bg-gradient-light: #007e8f;
+    --on-bg-gradient-light: linear-gradient(0deg, #008799 0%, #0095a8 50%, #00b0c7 100%);
 
     --primary-dark: #a4c8ff;
     --on-primary-dark: #00305f;
@@ -53,6 +55,8 @@
     --on-surface-variant-dark: #cac4d0;
     --inverse-surface-dark: #e6e1e5;
     --inverse-on-surface-dark: #1c1b1f;
+    --bg-gradient-dark: #121416;
+    --on-bg-gradient-dark: linear-gradient(0deg, #17191c 0%, #1e2024 50%, #25272d 100%);
   }
 
   @media (prefers-color-scheme: light) {
@@ -82,6 +86,8 @@
       --on-surface-variant: var(--on-surface-variant-light);
       --inverse-surface: var(--inverse-surface-light);
       --inverse-on-surface: var(--inverse-on-surface-light);
+      --bg-gradient: var(--bg-gradient-light);
+      --on-bg-gradient: var(--on-bg-gradient-light);
     }
 
     :global(.dark-theme) {
@@ -110,6 +116,8 @@
       --on-surface-variant: var(--on-surface-variant-dark);
       --inverse-surface: var(--inverse-surface-dark);
       --inverse-on-surface: var(--inverse-on-surface-dark);
+      --bg-gradient: var(--bg-gradient-dark);
+      --on-bg-gradient: var(--on-bg-gradient-dark);
     }
   }
 
@@ -140,6 +148,8 @@
       --on-surface-variant: var(--on-surface-variant-dark);
       --inverse-surface: var(--inverse-surface-dark);
       --inverse-on-surface: var(--inverse-on-surface-dark);
+      --bg-gradient: var(--bg-gradient-dark);
+      --on-bg-gradient: var(--on-bg-gradient-dark);
     }
 
     :global(.light-theme) {
@@ -168,6 +178,8 @@
       --on-surface-variant: var(--on-surface-variant-light);
       --inverse-surface: var(--inverse-surface-light);
       --inverse-on-surface: var(--inverse-on-surface-light);
+      --bg-gradient: var(--bg-gradient-light);
+      --on-bg-gradient: var(--on-bg-gradient-light);
     }
   }
 
@@ -182,8 +194,8 @@
 
   :global(body) {
     background-color: var(--background);
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    min-width: 100vw;
     outline: 2px solid blue;
   }
 
