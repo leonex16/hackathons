@@ -1,18 +1,19 @@
 <script lang="ts">
   export let isLowNetwork: boolean;
-  export let isLandscapeMode: boolean;
+  export let isDisplayMode: boolean;
+  export let dayOrNight: string;
 
   const handleNetwork = () => isLowNetwork = !isLowNetwork;
-  const handleLandscape = () => isLandscapeMode = !isLandscapeMode;
+  const handleDisplay = () => isDisplayMode = !isDisplayMode;
 </script>
 
 <header class="weather-header">
-  <span class="weather-header__condition">Day</span>
+  <span class="weather-header__condition">{dayOrNight}</span>
   <button class="weather-header__network material-symbols-outlined" on:click={handleNetwork}>
     {isLowNetwork ? '3g_mobiledata' : '5g'}
   </button>
-  <button class="weather-header__mode material-symbols-outlined" on:click={handleLandscape}>
-    {isLandscapeMode ? 'stay_current_landscape' : 'stay_current_portrait'}
+  <button class="weather-header__mode material-symbols-outlined" on:click={handleDisplay}>
+    {isDisplayMode ? 'open_in_full' : 'close_fullscreen'}
   </button>
 </header>
 

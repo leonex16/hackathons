@@ -1,22 +1,26 @@
 <script lang="ts">
-  export let isLandscapeMode: boolean;
+  export let humidity: any;
+  export let precipitation: any;
+  export let wind: any;
+
+  const sections = [ humidity, precipitation, wind ];
 </script>
 
 <footer class="weather-footer">
     <section
       class="weather-footer__body weather-footer__body--column-display weather-footer--mt"
     >
-      {#each Array(3) as _, i}
+      {#each sections as section}
         <section
           class="weather-footer__section"
         >
           <header class="weather-footer__header">
-            <h4 class="weather-footer__title">title</h4>
+            <h4 class="weather-footer__label">{section.label}</h4>
           </header>
           <div class="weather-footer__content">
             <p class="weather-footer__value">
-              30
-              <span class="weather-footer__unit">Km</span>
+              {section.value}
+              <span class="weather-footer__unit">{section.unit}</span>
             </p>
           </div>
         </section>
@@ -49,7 +53,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .weather-footer__title {
+  .weather-footer__label {
   }
 
   .weather-footer__content {
