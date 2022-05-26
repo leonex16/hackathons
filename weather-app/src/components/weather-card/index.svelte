@@ -2,42 +2,10 @@
   import Header from '@/src/components/weather-card/components/header.svelte';
   import Footer from '@/src/components/weather-card/components/footer.svelte';
 
-  export const data = {
-    condition: {
-      icon: 'https://cdn.weatherapi.com/weather/64x64/day/116.png',
-      // https://www.weatherapi.com/docs/conditions.json
-      text: 'Mist',
-    },
-    location: {
-      name: 'Santiago',
-      country: 'Chile',
-      localTime: '',
-    },
-    current: {
-      dayOrNight: 'Night',
-      temperature: {
-        C: '20',
-        F: '0',
-      },
-      humidity: {
-        label: 'Humidity',
-        value: 30,
-        unit: '%',
-      },
-      precipitation: {
-        label: 'Precipitation',
-        value: 20,
-        unit: 'mm',
-      },
-      wind: {
-        label: 'Wind Speed',
-        value: 10,
-        unit: 'Km/h',
-      },
-    },
-  };
+  export let data;
 
   const { condition, current, location } = data;
+
   let isDisplayMode = true;
 </script>
 
@@ -84,11 +52,6 @@
 </article>
 
 <style>
-  :root {
-    --on-background: #e6e1e5;
-    --outline: #d1c7cf;
-  }
-
   .weather-card {
     position: relative;
 
@@ -102,6 +65,7 @@
 
     background: var(--on-bg-gradient);
 
+    max-width: 350px;
     height: 100%;
     width: 100%;
 
@@ -190,6 +154,7 @@
     position: relative;
     font-size: 4rem;
     text-align: center;
+    color: var(--white);
   }
 
   .weather-body__celsius::after {
@@ -201,6 +166,7 @@
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
+    color: var(--white);
   }
 
   .weather-body__details {
@@ -208,5 +174,6 @@
     text-align: center;
     opacity: 0.5;
     margin-top: 1rem;
+    color: var(--white);
   }
 </style>

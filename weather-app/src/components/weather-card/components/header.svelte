@@ -3,7 +3,7 @@
   export let conditionText: string;
   export let dayOrNight: string;
 
-  const handleDisplay = () => isDisplayMode = !isDisplayMode;
+  const handleDisplay = () => (isDisplayMode = !isDisplayMode);
 </script>
 
 <header class="weather-header">
@@ -12,13 +12,13 @@
     {conditionText}
     {isLowNetwork ? '3g_mobiledata' : '5g'}
   </button> -->
-  <button class="weather-header__mode material-symbols-outlined" on:click={handleDisplay}>
+  <button class="weather-header__mode material-symbols-rounded" on:click={handleDisplay}>
     {isDisplayMode ? 'open_in_full' : 'close_fullscreen'}
   </button>
 </header>
 
 <style>
-    .weather-header {
+  .weather-header {
     display: flex;
     justify-content: space-between;
   }
@@ -26,6 +26,7 @@
   .weather-header__condition {
     font-size: 14px;
     font-weight: bold;
+    color: var(--white);
   }
 
   .weather-header__mode {
@@ -33,5 +34,6 @@
     outline: none;
     border: none;
     cursor: pointer;
+    color: var(--white);
   }
 </style>

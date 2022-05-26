@@ -54,6 +54,7 @@
   }
 
   .weather-footer__label {
+    color: var(--white);
   }
 
   .weather-footer__content {
@@ -61,11 +62,13 @@
 
   .weather-footer__value {
     font-weight: bold;
+    color: var(--white);
   }
 
   .weather-footer__unit {
     font-size: 12px;
     font-weight: normal;
+    color: var(--white);
   }
   
 </style>
