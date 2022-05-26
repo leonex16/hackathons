@@ -57,6 +57,9 @@
     --inverse-on-surface-dark: #1c1b1f;
     --bg-gradient-dark: #121416;
     --on-bg-gradient-dark: linear-gradient(0deg, #17191c 0%, #1e2024 50%, #25272d 100%);
+
+    --black: #1c1b1f;
+    --white: #e6e1e5;
   }
 
   @media (prefers-color-scheme: light) {
@@ -193,7 +196,6 @@
   }
 
   :global(body) {
-    background-color: var(--background);
     min-height: 100vh;
     min-width: 100vw;
     outline: 2px solid blue;
@@ -205,7 +207,7 @@
   }
 
   :global(.no-scrollbars::-webkit-scrollbar, .hidden) {
-    display: none;
+    display: none !important;
   }
 
   :global(.opacity-0) {
