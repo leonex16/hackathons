@@ -1,8 +1,8 @@
 <script lang="ts">
-  export let showLeftScreen = false;
+  import { leftScreen } from '@/src/store/index';
 
   const handleClick = (screen: string) => {
-    showLeftScreen = screen === 'settings';
+    leftScreen.showLeftScreen(screen === 'settings')
   };
 </script>
 

@@ -1,12 +1,12 @@
 <script lang="ts">
-  export let showLeftScreen = false;
+  import { leftScreen } from '@/src/store/index';
 
-  const handleBackdrop = () => showLeftScreen = false;
+  const handleBackdrop = () => leftScreen.showLeftScreen(false);
 </script>
 
 <aside class="left-menu">
-  <div class="left-menu__backdrop {showLeftScreen || 'hidden'}" on:click={handleBackdrop} />
-  <article class="left-menu__content {showLeftScreen && 'left-menu__content--active'}">
+  <div class="left-menu__backdrop {$leftScreen || 'hidden'}" on:click={handleBackdrop} />
+  <article class="left-menu__content {$leftScreen && 'left-menu__content--active'}">
     <section class="left-menu__body"><slot /></section>
   </article>
 </aside>
@@ -37,8 +37,8 @@
     height: 100%;
     width: 100%;
 
-    transform: translateX(-100%);
-    transition: transform 200ms ease-in-out;
+    transform: translateX(calc( -100% - 1px));
+    transition: transform 200ms ease-in-out, background-color 200ms ease-in-out;
   }
 
   .left-menu__content--active {
