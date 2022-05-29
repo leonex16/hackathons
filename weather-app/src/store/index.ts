@@ -2,7 +2,7 @@ import type { Settings } from '@/src/types/index';
 import { writable } from 'svelte/store';
 
 const initSettings = () => {
-  const { subscribe, update } = writable<Settings>({
+  const { set, subscribe, update } = writable<Settings>({
     isSaveNetworkActive: true,
     isDarkModeActive: false,
   });
@@ -16,6 +16,7 @@ const initSettings = () => {
 
   return {
     subscribe,
+    set,
     updateProperty
   }
 }
