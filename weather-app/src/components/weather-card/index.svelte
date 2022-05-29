@@ -1,31 +1,35 @@
 <script lang="ts">
+  import type { WeatherRealtimeResponse } from '@/src/types';
   import Header from '@/src/components/weather-card/components/header.svelte';
   import Footer from '@/src/components/weather-card/components/footer.svelte';
 
-  export let data;
+  export let data: WeatherRealtimeResponse;
 
   const { condition, current, location } = data;
-
-  let isDisplayMode = true;
 </script>
 
 <article
   class="
     weather-card
-    {isDisplayMode
-    ? 'weather-card--open-fullscreen weather-card--no-cirble-bg'
-    : 'weather-card--close-fullscreen'}
+    {data.isMinimized
+    ? 'weather-card--minimized weather-card--no-cirble-bg'
+    : 'weather-card--maximized'}
   "
 >
-  <Header bind:isDisplayMode conditionText={condition.text} dayOrNight={current.dayOrNight} />
+  <Header
+    bind:isMinimized={data.isMinimized}
+    id={data.id}
+    conditionText={condition.text}
+    dayOrNight={current.dayOrNight}
+  />
 
   <section class="weather-body">
-    <header class="weather-body__header {isDisplayMode && 'hidden'}">
+    <header class="weather-body__header {data.isMinimized && 'hidden'}">
       <img class="weather-body__img" src={condition.icon} alt={condition.text} />
     </header>
 
     <div
-      class="weather-body__content no-scrollbars {isDisplayMode ||
+      class="weather-body__content no-scrollbars {data.isMinimized ||
         'weather-body__content--close-fullscreen '}"
     >
       <section class="weather-body__screen">
@@ -35,7 +39,7 @@
         <div>
           <p class="weather-body__city">{`${location.name}, ${location.country}`}</p>
         </div>
-        <footer class="weather-body__footer {isDisplayMode || 'opacity-0'}">
+        <footer class="weather-body__footer {data.isMinimized || 'hidden'}">
           <p class="weather-body__details">Swipe to see details</p>
         </footer>
       </section>
@@ -65,6 +69,7 @@
 
     background: var(--on-bg-gradient);
 
+    min-height: 200px;
     max-width: 350px;
     height: 100%;
     width: 100%;
@@ -108,15 +113,16 @@
     opacity: 0;
   }
 
-  .weather-card--open-fullscreen {
+  .weather-card--minimized {
     aspect-ratio: 16 / 9;
     max-height: 200px;
     min-width: 350px;
   }
 
-  .weather-card--close-fullscreen {
+  .weather-card--maximized {
     aspect-ratio: 9 / 16;
     max-height: 350px;
+    min-height: 350px;
     min-width: 350px;
   }
 
@@ -128,6 +134,7 @@
   .weather-body__header {
     text-align: center;
     max-height: 100px;
+    margin-bottom: 1rem;
   }
 
   .weather-body__img {
@@ -138,7 +145,8 @@
   .weather-body__content {
     display: flex;
     scroll-snap-type: x mandatory;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .weather-body__content--close-fullscreen {
@@ -173,7 +181,7 @@
     font-size: 14px;
     text-align: center;
     opacity: 0.5;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     color: var(--white);
   }
 </style>
