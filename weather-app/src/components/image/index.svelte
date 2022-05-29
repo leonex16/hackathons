@@ -20,6 +20,9 @@
   img {
     background-image: url('../../static/loader-img.svg');
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center;
+    background-size: contain;
+    display: inline-block;
   }
+
 </style>
