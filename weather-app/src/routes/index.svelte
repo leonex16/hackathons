@@ -1,56 +1,32 @@
 <script lang="ts">
-  // import WeatherCard from '@/src/components/weather-card/index.svelte';
-  import LeftMenu from '@/src/components/left-menu/index.svelte';
+  import { onMount } from 'svelte';
+
+  import SearchBox from '@/src/components/search-box/index.svelte';
   import BottomBar from '@/src/components/bottom-bar/index.svelte';
+  import HomePage from '@/src/pages/home/index.svelte';
   import SettignsPage from '@/src/pages/settings/index.svelte';
-  import { settings } from '@/src/store/index';
+  import { handleVisibility, settings } from '@/src/store/index';
+  import { getFromLocalStorage, saveToLocalStorage } from '@/src/functions/index';
 
-  const data = {
-    condition: {
-      icon: 'https://cdn.weatherapi.com/weather/64x64/day/116.png',
-      // https://www.weatherapi.com/docs/conditions.json
-      text: 'Mist',
-    },
-    location: {
-      name: 'Santiago',
-      country: 'Chile',
-      localTime: '',
-    },
-    current: {
-      dayOrNight: 'Night',
-      temperature: {
-        C: '20',
-        F: '0',
-      },
-      humidity: {
-        label: 'Humidity',
-        value: 30,
-        unit: '%',
-      },
-      precipitation: {
-        label: 'Precipitation',
-        value: 20,
-        unit: 'mm',
-      },
-      wind: {
-        label: 'Wind Speed',
-        value: 10,
-        unit: 'Km/h',
-      },
-    },
-  };
-
+  onMount(() => {
+    const settingsLS = getFromLocalStorage('settings');
+    settingsLS === null ? saveToLocalStorage('settings', $settings) : settings.set(settingsLS);
+  });
 </script>
 
 <div class={$settings.isDarkModeActive ? 'dark-theme' : 'light-theme'}>
-  <header />
-  <main>
-    <LeftMenu >
-      <SettignsPage />
-    </LeftMenu>
+  <header class={$handleVisibility.header ? 'show-searchbox' : ''}>
+    <SearchBox placeholder="Search city" />
+  </header>
+
+  <main class="no-scrollbars">
+    <SettignsPage />
+    <HomePage />
   </main>
 
-  <BottomBar />
+  <footer>
+    <BottomBar />
+  </footer>
 </div>
 
 <style>
@@ -60,6 +36,7 @@
 
     background-color: var(--background);
 
+    max-height: 100vh;
     min-height: 100vh;
     min-width: 100vw;
 
@@ -67,13 +44,26 @@
   }
 
   header {
-    flex: 0 0 auto;
+    position: relative;
+    flex: 1 1 auto;
+    top: -51px;
+    height: 1px;
+
+    width: 100vw;
+
+    transition: top 200ms ease-in-out, height 200ms ease-in-out;
+  }
+
+  .show-searchbox {
+    top: 0;
+    height: 51px;
   }
 
   main {
     flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
+
+    overflow-y: auto;
+    max-height: 100%;
     padding: 1rem;
   }
 </style>
