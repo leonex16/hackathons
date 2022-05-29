@@ -44,5 +44,30 @@ const initHandleVisibility = () => {
   }
 }
 
+const initWeather = () => {
+  const { subscribe, update } = writable<string[]>([]);
+
+  const add = (id: string) => {
+    update(prevState => {
+      prevState.push(id);
+      return prevState;
+    });
+  };
+
+  const remove = (id: string) => {
+    update(prevState => {
+      prevState = prevState.filter(ID => ID !== id);
+      return prevState;
+    });
+  };
+
+  return {
+    subscribe,
+    add,
+    remove
+  }
+}
+
 export const settings = initSettings();
-export const handleVisibility = initHandleVisibility()
+export const handleVisibility = initHandleVisibility();
+export const weather = initWeather();
