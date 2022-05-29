@@ -1,20 +1,51 @@
 <script lang="ts">
-  export let isDisplayMode: boolean;
+  import type { WeatherRealtimeResponse } from '@/src/types';
+  
+  import { getFromLocalStorage, saveToLocalStorage } from '@/src/functions';
+  import { weather } from '@/src/store';
+  
+  export let id: string;
+  export let isMinimized: boolean;
   export let conditionText: string;
   export let dayOrNight: string;
 
-  const handleDisplay = () => (isDisplayMode = !isDisplayMode);
+  const updateLocalStorage = () => {
+    const data: WeatherRealtimeResponse[] = getFromLocalStorage('weather-data') ?? [];
+
+    for (const item of data) {
+      if (item.id !== id) continue;
+
+      item.isMinimized = isMinimized;
+      break;
+    }
+
+    saveToLocalStorage('weather-data', data);
+  }
+
+  const removeToLocalStorage = () => {
+    const data: WeatherRealtimeResponse[] = getFromLocalStorage('weather-data') ?? [];
+
+    const filteredData = data.filter(item => item.id !== id);
+
+    saveToLocalStorage('weather-data', filteredData);
+  }
+
+  const handleDisplay = () => {
+    isMinimized = !isMinimized;
+    updateLocalStorage();
+  };
+
+  const deleteItem = () => {
+    removeToLocalStorage();
+  }
 </script>
 
 <header class="weather-header">
-  <span class="weather-header__condition">{`${dayOrNight} - ${conditionText}`}</span>
-  <!-- <button class="weather-header__network">
-    {conditionText}
-    {isLowNetwork ? '3g_mobiledata' : '5g'}
-  </button> -->
   <button class="weather-header__mode material-symbols-rounded" on:click={handleDisplay}>
-    {isDisplayMode ? 'open_in_full' : 'close_fullscreen'}
+    {isMinimized ? 'open_in_full' : 'close_fullscreen'}
   </button>
+  <span class="weather-header__condition">{`${dayOrNight} - ${conditionText}`}</span>
+  <button class="weather-header__delete material-symbols-rounded" on:click={deleteItem}>delete</button>
 </header>
 
 <style>
@@ -29,6 +60,7 @@
     color: var(--white);
   }
 
+  .weather-header__delete,
   .weather-header__mode {
     background-color: transparent;
     outline: none;
