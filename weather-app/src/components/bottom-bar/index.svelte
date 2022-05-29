@@ -1,35 +1,41 @@
 <script lang="ts">
   import { leftScreen } from '@/src/store/index';
 
+  const buttons = [
+    {
+      id: 'settings',
+      label: 'Settings',
+      icon: 'settings',
+    },
+    {
+      id: 'home',
+      label: 'Home',
+      icon: 'cottage',
+    },
+    {
+      id: 'search',
+      label: 'Search',
+      icon: 'search',
+    },
+  ];
   const handleClick = (screen: string) => {
-    leftScreen.showLeftScreen(screen === 'settings')
+    leftScreen.showLeftScreen(screen === 'settings');
   };
 </script>
 
-<footer>
-  <nav class="bottom-bar">
-    <ul class="bottom-bar__links">
-      <li class="bottom-bar__link">
+<nav class="bottom-bar">
+  <ul class="bottom-bar__links">
+    {#each buttons as btn}
+      <li class="bottom-bar__link" aria-label={btn.label}>
         <button
           class="bottom-bar__btn material-symbols-rounded"
-          on:click|preventDefault={() => handleClick('settings')}>settings</button
+          on:click|preventDefault={() => handleClick(btn.id)}>{btn.icon}</button
         >
+        <span class="bottom-bar__label">{btn.label}</span>
       </li>
-      <li class="bottom-bar__link">
-        <button
-          class="bottom-bar__btn material-symbols-rounded"
-          on:click|preventDefault={() => handleClick('home')}>cottage</button
-        >
-      </li>
-      <li class="bottom-bar__link">
-        <button
-          class="bottom-bar__btn material-symbols-rounded"
-          on:click|preventDefault={() => handleClick('search')}>search</button
-        >
-      </li>
-    </ul>
-  </nav>
-</footer>
+    {/each}
+  </ul>
+</nav>
 
 <style>
   .bottom-bar {
@@ -50,6 +56,8 @@
   }
 
   .bottom-bar__link {
+    display: flex;
+    flex-direction: column;
     list-style: none;
   }
 
@@ -58,5 +66,12 @@
     border: none;
     cursor: pointer;
     font-size: 32px;
+    color: var(--inverse-surface);
+  }
+
+  .bottom-bar__label {
+    display: none;
+    font-size: 12px;
+    margin-top: 8px;
   }
 </style>
