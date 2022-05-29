@@ -16,6 +16,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 3;
 
     background-color: #0005;
 
@@ -27,6 +28,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 3;
 
     background-color: var(--background);
     border-radius: 10px;
