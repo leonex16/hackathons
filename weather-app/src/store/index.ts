@@ -4,7 +4,7 @@ import { writable } from 'svelte/store';
 const initSettings = () => {
   const { set, subscribe, update } = writable<Settings>({
     isSaveNetworkActive: true,
-    isDarkModeActive: false,
+    isDarkModeActive: true,
   });
 
   const updateProperty = (property: keyof Settings, value: boolean) => {
