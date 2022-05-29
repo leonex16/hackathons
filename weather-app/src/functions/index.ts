@@ -9,3 +9,15 @@ export const getFromLocalStorage = (key: string) => {
     ? item
     : JSON.parse(item);
 }
+
+export const debounce = (func: (args: Record<string, unknown>) => unknown, waitMs: number) => {
+  let debounceTimer = 0;
+
+  return function({ cancel = false, ...args}) {
+    if (cancel) return;
+
+    clearTimeout(debounceTimer);
+
+    debounceTimer = window.setTimeout(() => func(args), waitMs);
+  }
+}
