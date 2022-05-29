@@ -1,14 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import type { AutoComplete } from '@/src/routes/api/auto-complete/types';
+import { options, URL } from '@/src/routes/api/config/index';
 import countryCodes from '@/src/data/country-codes.json';
-
-const URL = 'https://weatherapi-com.p.rapidapi.com';
-const options = {
-  headers: {
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-    'X-RapidAPI-Key': 'fc6e05bb36msheefffdebdddd71bp153576jsn72eb5ac4b2fe',
-  },
-};
 
 const filterData = (data: AutoComplete[], ids: string) => {
   const MAX_ITEMS = 5;

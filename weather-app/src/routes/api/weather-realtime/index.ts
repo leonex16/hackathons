@@ -1,13 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import type { WeatherRealtime } from '@/src/routes/api/weather-realtime/types';
+import { options, URL } from '@/src/routes/api/config/index';
 
-const URL = 'https://weatherapi-com.p.rapidapi.com';
-const options = {
-  headers: {
-    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com',
-    'X-RapidAPI-Key': 'fc6e05bb36msheefffdebdddd71bp153576jsn72eb5ac4b2fe',
-  },
-};
 
 const mapData = ({ current, location }: WeatherRealtime) => {
   const { condition, humidity, is_day, last_updated, precip_mm, temp_c, temp_f, wind_kph } =
@@ -58,8 +52,7 @@ const mapData = ({ current, location }: WeatherRealtime) => {
 export async function get({ url }: RequestEvent) {
   const lat = url.searchParams.get('lat');
   const lon = url.searchParams.get('lon');
-  const query = lat && lon ? `${lat};${lon}` : 'auto:ip';
-
+  const query = lat && lon ? `${lat},${lon}` : 'auto%3Aip';
   const response = await fetch(`${URL}/current.json?q=${query}`, options);
   const data: WeatherRealtime = await response.json();
 
