@@ -19,8 +19,8 @@
 
     background-color: #0005;
 
-    height: 100%;
-    width: 100%;
+    min-height: 100vh;
+    min-width: 100vw;
   }
 
   .left-menu__content {
@@ -34,10 +34,12 @@
 
     overflow: hidden;
 
+    min-height: 100vh;
+    min-width: 100vw;
     height: 100%;
     width: 100%;
 
-    transform: translateX(calc( -100% - 1px));
+    transform: translateX(calc( -100% - 5px));
     transition: transform 200ms ease-in-out, background-color 200ms ease-in-out;
   }
 
