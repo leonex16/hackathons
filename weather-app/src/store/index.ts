@@ -1,4 +1,4 @@
-import type { Settings } from '@/src/types/index';
+import type { Settings, Weather } from '@/src/types/index';
 import { writable } from 'svelte/store';
 
 const initSettings = () => {
@@ -21,18 +21,28 @@ const initSettings = () => {
   }
 }
 
-const initLeftScreen = () => {
-  const {set, subscribe} = writable(false);
-
-  const showLeftScreen = (value: boolean) => {
-    set(value);
+const initHandleVisibility = () => {
+  const state = {
+    header: false,
+    leftScreen: false
   };
+  const { set, subscribe, update } = writable( state );
+
+  const setVisibility = ( property: keyof typeof state, visibility: boolean ) => {
+    update( prevState => {
+      prevState[property] = visibility;
+      return prevState;
+    });
+  }
+
+  const resetState = () => set(state);
 
   return {
     subscribe,
-    showLeftScreen
+    setVisibility,
+    resetState
   }
 }
 
 export const settings = initSettings();
-export const leftScreen = initLeftScreen();
+export const handleVisibility = initHandleVisibility()

@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { leftScreen } from '@/src/store/index';
-
-  const handleBackdrop = () => leftScreen.showLeftScreen(false);
+  import { handleVisibility } from '@/src/store/index';
+ 
+  const handleBackdrop = () => handleVisibility.setVisibility('leftScreen', false);
 </script>
 
 <aside class="left-menu">
-  <div class="left-menu__backdrop {$leftScreen || 'hidden'}" on:click={handleBackdrop} />
-  <article class="left-menu__content {$leftScreen && 'left-menu__content--active'}">
+  <div class="left-menu__backdrop {$handleVisibility.leftScreen || 'hidden'}" on:click={handleBackdrop} />
+  <article class="left-menu__content {$handleVisibility.leftScreen && 'left-menu__content--active'}">
     <section class="left-menu__body"><slot /></section>
   </article>
 </aside>

@@ -1,6 +1,6 @@
 <script lang="ts">
   
-  import { leftScreen, settings} from '@/src/store/index';
+  import { handleVisibility, settings} from '@/src/store/index';
   import { saveToLocalStorage } from '@/src/functions/index';
 
   type SettingTypes = keyof typeof $settings;
@@ -16,7 +16,7 @@
     },
   ];
 
-  const handleClick = () => leftScreen.showLeftScreen(false);
+  const handleClick = () => handleVisibility.setVisibility('leftScreen', false);
 
   const handleChange = (id: SettingTypes) => {
     settings.updateProperty( id, !$settings[id] );

@@ -11,7 +11,7 @@
 </script>
 <form class="search-box" on:submit|preventDefault={handleSubmit}>
   <label class="search-box__label">
-    <input class="search-box__input" type="search" {placeholder} bind:value={inputValue}/>
+    <input class="search-box__input" type="search" {placeholder} bind:value={inputValue} />
     <!-- <span class="search-box__icon material-symbols-rounded" on:click={handleClearBtn}>close</span> -->
   </label>
 </form>
@@ -35,9 +35,7 @@
     color: var(--black);
     font-size: 1rem;
     border: none;
-    border-radius: 8px;
-    outline: 2px solid var(--outline);
-    padding: 0.8rem 1rem;
+    padding: 1rem 1rem;
     width: 100%;
   }
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { leftScreen } from '@/src/store/index';
+  import { handleVisibility } from '@/src/store/index';
 
   const buttons = [
     {
@@ -18,8 +18,23 @@
       icon: 'search',
     },
   ];
+
   const handleClick = (screen: string) => {
-    leftScreen.showLeftScreen(screen === 'settings');
+    
+    switch( screen ) {
+      case 'settings':
+        handleVisibility.setVisibility('leftScreen', true);
+        break;
+
+      case 'home':
+        handleVisibility.resetState();
+        break;
+      
+      case 'search':
+        handleVisibility.setVisibility('header', !$handleVisibility.header);
+        break;
+
+    }
   };
 </script>
 

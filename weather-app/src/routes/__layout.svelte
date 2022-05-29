@@ -196,6 +196,7 @@
   }
 
   :global(body) {
+    overflow: hidden;
     min-height: 100vh;
     min-width: 100vw;
     outline: 2px solid blue;
