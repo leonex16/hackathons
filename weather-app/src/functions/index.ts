@@ -21,3 +21,10 @@ export const debounce = (func: (args: Record<string, unknown>) => unknown, waitM
     debounceTimer = window.setTimeout(() => func(args), waitMs);
   }
 }
+
+export const handleHttpRequest = async <T>( url: string, options?: RequestInit ): Promise<T> => {
+  const response = await fetch(url, options ?? {});
+  const data = await response.json();
+
+  return data;
+};
