@@ -4,11 +4,19 @@ export interface Settings {
 }
 
 export interface AutocompleteResponse {
-  id:      string;
-  name:    string;
-  region:  string;
+  id: string;
+  name: string;
+  region: string;
   country: string;
-  src:     string;
+  src: string;
+}
+
+export interface WeatherRealtimeResponse {
+  id: string;
+  condition: Condition;
+  isMinimized: boolean;
+  location: Location;
+  current: Current;
 }
 
 interface Condition {
@@ -17,33 +25,28 @@ interface Condition {
 }
 
 interface Current {
-  dayOrNight:    string;
-  temperature:   Temperature;
-  humidity:      Humidity;
+  dayOrNight: string;
+  temperature: Temperature;
+  humidity: Humidity;
+  lastUpdated: string;
   precipitation: Humidity;
-  wind:          Humidity;
+  wind: Humidity;
 }
 
 interface Humidity {
   label: string;
   value: number;
-  unit:  string;
+  unit: string;
 }
 
 interface Temperature {
-  C: string;
-  F: string;
+  C: number;
+  F: number;
 }
 
 interface Location {
-  name:      string;
-  country:   string;
-  localTime: string;
-}
-
-export interface Weather {
-  id:        string;
-  condition: Condition;
-  location:  Location;
-  current:   Current;
+  name: string;
+  country: string;
+  localtime: string;
+  region: string;
 }
