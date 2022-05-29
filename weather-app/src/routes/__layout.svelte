@@ -204,7 +204,6 @@
   }
 
   :global(.no-scrollbars) {
-    overflow: auto !important;
     scrollbar-width: none !important;
   }
 
