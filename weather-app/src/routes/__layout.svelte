@@ -199,11 +199,12 @@
     min-height: 100vh;
     min-width: 100vw;
     outline: 2px solid blue;
+    font-size: 18px;
   }
 
   :global(.no-scrollbars) {
-    overflow: auto;
-    scrollbar-width: none;
+    overflow: auto !important;
+    scrollbar-width: none !important;
   }
 
   :global(.no-scrollbars::-webkit-scrollbar, .hidden) {
@@ -211,11 +212,6 @@
   }
 
   :global(.opacity-0) {
-    opacity: 0;
-  }
-
-  div {
-    height: 100%;
-    width: 100%;
+    opacity: 0 !important;
   }
 </style>
