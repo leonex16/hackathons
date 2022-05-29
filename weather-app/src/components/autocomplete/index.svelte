@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { AutocompleteResponse } from '@/src/types/index';
 
-  import { debounce, handleHttpRequest } from '@/src/functions';
+  import { debounce, handleHttpRequest } from '@/src/functions/index';
+  import { weather } from '@/src/store/index';
   import Image from '@/src/components/image/index.svelte';
   import Loader from '@/src/components/loader/index.svelte';
 
@@ -11,14 +12,9 @@
   let isSearching = false;
   let isLoading = false;
 
-  const debounceInput = debounce(({ value }) => {
-    handleHttpRequest<AutocompleteResponse[]>(`/api/auto-complete?q=${value}`)
-      .then((data) => {
-        autocompleteData = data;
-      })
-      .finally(() => {
-        isLoading = false;
-      });
+  const debounceInput = debounce(async ({ value }) => {
+    autocompleteData = await handleHttpRequest<AutocompleteResponse[]>(`/api/auto-complete?q=${value}`);
+    isLoading = false;
   }, 3000);
 
   const clearStates = () => {
@@ -41,6 +37,10 @@
     debounceInput({ value });
   };
 
+  const saveToStore = (id: string) => {
+    weather.add(id);
+  };
+
   $: handleToSearch(toSearch);
 </script>
 
@@ -56,7 +56,7 @@
   {:else}
     <ul class="autocomplete__list">
       {#each autocompleteData as weather}
-        <li class="autocomplete__item">
+        <li class="autocomplete__item" on:click={() => saveToStore( weather.id )}>
           <article class="autocomplete__content">
             <figure class="autocomplete__fig">
               <Image className="autocomplete__flag" src={weather.src} alt={weather.country} />
