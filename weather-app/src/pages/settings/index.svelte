@@ -1,6 +1,6 @@
 <script lang="ts">
-  
-  import { handleVisibility, settings} from '@/src/store/index';
+  import LeftMenu from '@/src/components/left-menu/index.svelte';
+  import { handleVisibility, settings } from '@/src/store/index';
   import { saveToLocalStorage } from '@/src/functions/index';
 
   type SettingTypes = keyof typeof $settings;
@@ -19,29 +19,37 @@
   const handleClick = () => handleVisibility.setVisibility('leftScreen', false);
 
   const handleChange = (id: SettingTypes) => {
-    settings.updateProperty( id, !$settings[id] );
+    settings.updateProperty(id, !$settings[id]);
     saveToLocalStorage('settings', $settings);
-  }
+  };
 </script>
 
-<article class="settings">
-  <header class="settings__header">
-    <h2 class="settings__title">Settings</h2>
-  </header>
-  <section class="settings__items">
-    {#each checkboxes as checkbox}
-      <div class="settings__item">
-        <label class="settings__label">
-          <input id={checkbox.id} type="checkbox" class="settings__checkbox" checked={$settings[checkbox.id]} on:change={() => handleChange(checkbox.id)} />
-          <span class="settings__text">{checkbox.label}</span>
-        </label>
-      </div>
-    {/each}
-  </section>
-  <footer class="settings__footer">
-    <button class="settings__button" on:click={handleClick}>Close</button>
-  </footer>
-</article>
+<LeftMenu>
+  <article class="settings">
+    <header class="settings__header">
+      <h2 class="settings__title">Settings</h2>
+    </header>
+    <section class="settings__items">
+      {#each checkboxes as checkbox}
+        <div class="settings__item">
+          <label class="settings__label">
+            <input
+              id={checkbox.id}
+              type="checkbox"
+              class="settings__checkbox"
+              checked={$settings[checkbox.id]}
+              on:change={() => handleChange(checkbox.id)}
+            />
+            <span class="settings__text">{checkbox.label}</span>
+          </label>
+        </div>
+      {/each}
+    </section>
+    <footer class="settings__footer">
+      <button class="settings__button" on:click={handleClick}>Close</button>
+    </footer>
+  </article>
+</LeftMenu>
 
 <style>
   .settings {
@@ -63,7 +71,7 @@
   }
 
   .settings__item {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   /* .settings__label {} */
@@ -73,7 +81,7 @@
   }
 
   .settings__text {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 
   /* .settings__footer {} */
@@ -91,5 +99,4 @@
     padding: 1rem;
     width: 100%;
   }
-
 </style>
