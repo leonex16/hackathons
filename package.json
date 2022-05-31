@@ -1,0 +1,33 @@
+{
+	"name": "hackathons",
+	"version": "0.0.1",
+	"private": "true",
+	"workspaces": [
+		"weather-app"
+	],
+	"scripts": {
+		"dev:weather": "npm run -w weather-app dev",
+		"build:weather": "npm run -w weather-app build",
+		"package:weather": "npm run -w weather-app package",
+		"preview:weather": "npm run -w weather-app preview",
+		"prepare:weather": "npm run -w weather-app prepare",
+		"test:weather": "npm run -w weather-app test",
+		"check:weather": "npm run -w weather-app check",
+		"check:watch:weather": "npm run -w weather-app check",
+		"lint:weather": "npm run -w weather-app lint"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.21.0",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"@typescript-eslint/eslint-plugin": "^5.10.1",
+		"@typescript-eslint/parser": "^5.10.1",
+		"eslint": "^8.12.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"svelte": "^3.44.0",
+		"svelte-check": "^2.2.6",
+		"svelte-preprocess": "^4.10.1",
+		"tslib": "^2.3.1",
+		"typescript": "~4.6.2"
+	}
+}
