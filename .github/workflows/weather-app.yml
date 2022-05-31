@@ -8,6 +8,11 @@ on:
 jobs:
   init-ci:
     runs-on: ubuntu-20.04
+    environment: Development
+    env:
+      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_RAPIDAPI_HOST: ${{ secrets.VITE_RAPIDAPI_HOST }}
+      VITE_RAPIDAPI_KEY: ${{ secrets.VITE_RAPIDAPI_KEY }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
