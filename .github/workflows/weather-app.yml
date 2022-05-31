@@ -20,4 +20,4 @@ jobs:
       - name: Run build script
         run: npm run build:weather
       - name: Run tests
-        run: npm run test:weather
+        run: npx playwright install && npm run test:weather
