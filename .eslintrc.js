@@ -128,19 +128,17 @@ module.exports = {
     ...ENVS.TS.EXTENDS,
     ...ENVS.ESLINT.EXTENDS,
 	],
-	plugins: ['svelte3', '@typescript-eslint'],
   plugins: [
 		'svelte3',
     ...ENVS.TS.PLUGINS,
     ...ENVS.ESLINT.PLUGINS,
   ],
-	ignorePatterns: ['*.cjs'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
 		'svelte3/typescript': () => require('typescript')
 	},
 	parserOptions: {
-		sourceType: 'module',
+		sourceType: "module",
 		ecmaVersion: 2020
 	},
 	env: {
