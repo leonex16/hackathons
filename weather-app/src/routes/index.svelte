@@ -35,8 +35,10 @@
     flex-direction: column;
 
     background-color: var(--background);
+    overflow: hidden;
 
     max-height: 100vh;
+    max-width: 350px;
     min-height: 100vh;
     min-width: 100vw;
 
@@ -49,7 +51,7 @@
     top: -51px;
     height: 1px;
 
-    width: 100vw;
+    width: 100%;
 
     transition: top 200ms ease-in-out, height 200ms ease-in-out;
   }
@@ -64,6 +66,14 @@
 
     overflow-y: auto;
     max-height: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
+  }
+
+  header,
+  main,
+  footer {
+    max-width: 375px;
+    margin: 0 auto;
+    width:100%;
   }
 </style>
