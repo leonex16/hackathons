@@ -1,7 +1,7 @@
 name: Weather App Workflow
 
 on:
-  pull_request:
+  push:
     branches:
       - weather-app
 
