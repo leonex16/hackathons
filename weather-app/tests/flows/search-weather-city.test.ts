@@ -40,7 +40,7 @@ test.describe('Search weather city', () => {
     const weatherData = await getLocalStorageItem(context, 'weather-data');
     const weather = weatherData.find((item) => item.location.name === 'Ciudadsantiago');
 
-    expect(weatherData.length).toBe(2);
+    expect(weatherData.length).toBe(0);
     expect(weather).toBeTruthy();
   })
 });
