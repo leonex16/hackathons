@@ -6,7 +6,7 @@
   import Image from '@/src/components/image/index.svelte';
   import Loader from '@/src/components/loader/index.svelte';
 
-  export let toSearch: string = '';
+  export let toSearch = '';
 
   let autocompleteData: AutocompleteResponse[] | null = [];
   let isSearching = false;

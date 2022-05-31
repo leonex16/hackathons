@@ -2,7 +2,6 @@
   import type { WeatherRealtimeResponse } from '@/src/types';
   
   import { getFromLocalStorage, saveToLocalStorage } from '@/src/functions';
-  import { weather } from '@/src/store';
   
   export let id: string;
   export let isMinimized: boolean;

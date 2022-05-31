@@ -1,7 +1,9 @@
 <script lang="ts">
-  export let humidity: any;
-  export let precipitation: any;
-  export let wind: any;
+  import type { Humidity } from '@/src/types';
+
+  export let humidity: Humidity;
+  export let precipitation: Humidity;
+  export let wind: Humidity;
 
   const sections = [humidity, precipitation, wind];
 </script>

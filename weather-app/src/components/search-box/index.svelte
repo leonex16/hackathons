@@ -4,7 +4,7 @@
 
   let inputValue: string;
 
-  const handleSubmit = (evt: SubmitEvent) => {
+  const handleSubmit = () => {
     // TODO
   };
 
