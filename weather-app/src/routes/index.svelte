@@ -74,6 +74,6 @@
   footer {
     max-width: 375px;
     margin: 0 auto;
-    width:100%;
+    width: 100%;
   }
 </style>

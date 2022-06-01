@@ -2,7 +2,6 @@ import type { RequestEvent } from '@sveltejs/kit';
 import type { WeatherRealtime } from '@/src/routes/api/weather-realtime/types';
 import { options, URL } from '@/src/routes/api/config/index';
 
-
 const mapData = ({ current, location }: WeatherRealtime) => {
   const { condition, humidity, is_day, last_updated, precip_mm, temp_c, temp_f, wind_kph } =
     current;
@@ -53,6 +52,7 @@ export async function get({ url }: RequestEvent) {
   const lat = url.searchParams.get('lat');
   const lon = url.searchParams.get('lon');
   const query = lat && lon ? `${lat},${lon}` : 'auto%3Aip';
+
   const response = await fetch(`${URL}/current.json?q=${query}`, options);
   const data: WeatherRealtime = await response.json();
 

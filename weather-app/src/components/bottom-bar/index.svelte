@@ -20,8 +20,7 @@
   ];
 
   const handleClick = (screen: string) => {
-    
-    switch( screen ) {
+    switch (screen) {
       case 'settings':
         handleVisibility.setVisibility('leftScreen', true);
         break;
@@ -29,11 +28,10 @@
       case 'home':
         handleVisibility.resetState();
         break;
-      
+
       case 'search':
         handleVisibility.setVisibility('header', !$handleVisibility.header);
         break;
-
     }
   };
 </script>

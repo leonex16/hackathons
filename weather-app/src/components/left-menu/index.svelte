@@ -1,12 +1,17 @@
 <script lang="ts">
   import { handleVisibility } from '@/src/store/index';
- 
+
   const handleBackdrop = () => handleVisibility.setVisibility('leftScreen', false);
 </script>
 
 <aside class="left-menu">
-  <div class="left-menu__backdrop {$handleVisibility.leftScreen || 'hidden'}" on:click={handleBackdrop} />
-  <article class="left-menu__content {$handleVisibility.leftScreen && 'left-menu__content--active'}">
+  <div
+    class="left-menu__backdrop {$handleVisibility.leftScreen || 'hidden'}"
+    on:click={handleBackdrop}
+  />
+  <article
+    class="left-menu__content {$handleVisibility.leftScreen && 'left-menu__content--active'}"
+  >
     <section class="left-menu__body"><slot /></section>
   </article>
 </aside>
@@ -41,7 +46,7 @@
     height: 100%;
     width: 100%;
 
-    transform: translateX(calc( -100% - 5px));
+    transform: translateX(calc(-100% - 5px));
     transition: transform 200ms ease-in-out, background-color 200ms ease-in-out;
   }
 

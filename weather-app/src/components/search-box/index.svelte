@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Autocomplete from "@/src/components/autocomplete/index.svelte";
+  import Autocomplete from '@/src/components/autocomplete/index.svelte';
   export let placeholder = 'Search for a city';
 
   let inputValue: string;
@@ -7,8 +7,8 @@
   const handleSubmit = () => {
     // TODO
   };
-
 </script>
+
 <form class="search-box" on:submit|preventDefault={handleSubmit}>
   <label class="search-box__label">
     <input class="search-box__input" type="search" {placeholder} bind:value={inputValue} />
@@ -16,7 +16,6 @@
   </label>
 </form>
 <Autocomplete bind:toSearch={inputValue} />
-
 
 <style>
   .search-box {

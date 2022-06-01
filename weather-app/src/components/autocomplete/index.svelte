@@ -1,8 +1,9 @@
 <script lang="ts">
   import type { AutocompleteResponse } from '@/src/types/index';
 
-  import { debounce, handleHttpRequest } from '@/src/functions/index';
+  import { debounce } from '@/src/functions/index';
   import { weather, handleVisibility } from '@/src/store/index';
+  import { getOccurrences } from '@/src/services/auto-complete';
   import Image from '@/src/components/image/index.svelte';
   import Loader from '@/src/components/loader/index.svelte';
 
@@ -12,13 +13,16 @@
   let isSearching = false;
   let isLoading = false;
 
-  const debounceInput = debounce(async ({ value }) => {
-    const weatherIds = $weather.map(id => id).join('$');
-    const endpoint = `/api/auto-complete?q=${value}&ids=${weatherIds}`;
+  const fillOccurrences = async (value: string) => {
+    const data = await getOccurrences({ text: value, idsRenderized: $weather });
+    autocompleteData = Array.isArray(data) ? data : [];
+  };
 
-    autocompleteData = await handleHttpRequest<AutocompleteResponse[]>(endpoint);
+  const debounceInput = debounce(async ({ value }) => {
+    await fillOccurrences(value as string);
     isLoading = false;
   }, 3000);
+
 
   const clearStates = () => {
     isSearching = false;
@@ -62,7 +66,7 @@
   {:else}
     <ul class="autocomplete__list">
       {#each autocompleteData as weather}
-        <li class="autocomplete__item" on:click={() => handleClick( weather.id )}>
+        <li class="autocomplete__item" on:click={() => handleClick(weather.id)}>
           <article class="autocomplete__content">
             <figure class="autocomplete__fig">
               <Image className="autocomplete__flag" src={weather.src} alt={weather.country} />
