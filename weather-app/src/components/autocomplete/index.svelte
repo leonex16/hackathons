@@ -15,7 +15,7 @@
 
   const fillOccurrences = async (value: string) => {
     const data = await getOccurrences({ text: value, idsRenderized: $weather });
-    autocompleteData = Array.isArray(data) ? data : [];
+    autocompleteData = Array.isArray(data) ? data : null;
   };
 
   const debounceInput = debounce(async ({ value }) => {
