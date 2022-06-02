@@ -50,6 +50,8 @@ jobs:
           version: 6.0.2
       - name: Install dependencies
         run: pnpm i
+      - name: Install playwright
+        run: pnpx playwright install
       - name: Run tests
-        run: pnpx playwright install && pnpm run test:weather
+        run: pnpm run test:weather
       
