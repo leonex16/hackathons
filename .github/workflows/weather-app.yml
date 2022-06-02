@@ -49,5 +49,5 @@ jobs:
           run_install: false
           version: 6.0.2
       - name: Run tests
-        run: pnpx playwright install && pnpm run test:weather
+        run: npx playwright install && pnpm run test:weather
       
