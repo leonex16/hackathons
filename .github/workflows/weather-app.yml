@@ -51,5 +51,5 @@ jobs:
       - name: Install dependencies
         run: pnpm i
       - name: Run tests
-        run: pnpm playwright install && pnpm run test:weather
+        run: pnpx playwright install && pnpm run test:weather
       
