@@ -52,6 +52,8 @@ jobs:
         run: pnpm i
       - name: Install playwright
         run: pnpx playwright install
+      - name: Run build script
+        run: pnpm run build:weather
       - name: Run tests
         run: pnpm run test:weather
       
