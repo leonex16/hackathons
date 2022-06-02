@@ -21,10 +21,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.0.0
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          run_install: true
+          version: 6.0.2
       - name: Install dependencies
         run: npm ci
       - name: Run lint script
-        run: npm run lint:weather
+        run: pnpm run lint:weather
 
   testing-e2e-code:
     needs: 
@@ -40,6 +44,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.0.0
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          run_install: true
+          version: 6.0.2
       - name: Run tests
-        run: npx playwright install && npm run test:weather
+        run: pnpx playwright install && pnpm run test:weather
       
