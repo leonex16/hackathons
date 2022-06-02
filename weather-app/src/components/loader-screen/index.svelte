@@ -5,10 +5,14 @@
 
   onMount(() => {
     isLoadResource = !(document.readyState === 'complete');
+
+    setTimeout(() => {
+      isLoadResource = false;
+    }, 5000);
   });
 </script>
 
-<div class="loader-screen {isLoadResource || 'loader-screen--hidden'}">
+<div class="loader-screen {isLoadResource || 'loader-screen--hidden'}" aria-label="Loading app...">
   <img class="loader-screen__img" src="/loader-img.svg" alt="Loader Screen" />
 </div>
 
