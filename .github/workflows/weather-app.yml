@@ -48,6 +48,8 @@ jobs:
         with:
           run_install: false
           version: 6.0.2
+      - name: Install dependencies
+        run: pnpm i
       - name: Run tests
-        run: npx playwright install && pnpm run test:weather
+        run: pnpm playwright install && pnpm run test:weather
       
