@@ -8,7 +8,7 @@
 
     setTimeout(() => {
       isLoadResource = false;
-    }, 5000);
+    }, 5500);
   });
 </script>
 

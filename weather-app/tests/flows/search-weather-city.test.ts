@@ -34,12 +34,13 @@ test.describe('Search weather city', () => {
     expect(await page.locator('ul.autocomplete__list > li').count()).toBeLessThanOrEqual(5);
   });
 
-  test('should display the weather in Santiago', async ({ page }) => {
+  test('should display the weather in String Prairie', async ({ page }) => {
     await searchCity(page, 'String Prairie');
     await addCityToLayout(page, 'String Prairie');
+    await page.waitForResponse((response) => response.url().includes('/api/weather-realtime'));
 
-    await expect(page.locator('text=String Prairie, USA United States of America')).toBeVisible();
-  });
+    await expect(page.locator('text=String Prairie, United States of America')).toBeVisible();
+  })
 
   test('should save into local storage the selected city', async ({ context, page }) => {
     await searchCity(page, 'String Prairie');
