@@ -2,11 +2,13 @@ import { test, expect } from '@playwright/test';
 import type { Page, BrowserContext } from '@playwright/test';
 
 test.describe('Search weather city', () => {
-  const searchAndAddSantiagoCity = async (page: Page) => {
+  const addCityToLayout = async (page: Page, city: string) => {
+    await page.locator(`li:has-text("${city}")`).nth(0).click();
+  }
+  const searchCity = async (page: Page, city: string) => {
     await page.locator('button:has-text("search")').click();
     await page.locator('input[placeholder="Search city"]').click();
-    await page.locator('input[placeholder="Search city"]').fill('Santiago');
-    await page.locator('li:has-text("Santiago Region Metropolitana, Chile")').nth(1).click();
+    await page.locator('input[placeholder="Search city"]').fill(city);
   };
 
   const getLocalStorageItem = async (context: BrowserContext, key: string) => {
@@ -21,24 +23,31 @@ test.describe('Search weather city', () => {
     await page.goto('/');
   });
 
-  test('should have at least one weather card to open page', ({ page }) => {
-    const card = page.locator('.weather-card');
-
-    return expect(card).toBeVisible();
+  test('should have at least one weather card to open page', async ({ page }) => {
+    await expect(page.locator('.weather-card')).toBeVisible();
   });
 
-  test('should display the weather in Santiago', async ({ page }) => {
-    await searchAndAddSantiagoCity(page);
+  test('should display max 5 items to select', async ({page}) => {
+    await searchCity(page, 'String Prairie');
+    await page.waitForSelector('ul.autocomplete__list > li')
 
-    await expect(page.locator('text="Ciudadsantiago, Chile"')).toBeVisible();
+    expect(await page.locator('ul.autocomplete__list > li').count()).toBeLessThanOrEqual(5)
+  })
+
+  test('should display the weather in Santiago', async ({ page }) => {
+    await searchCity(page, 'String Prairie');
+    await addCityToLayout(page, 'String Prairie');
+
+    await expect(page.locator('text=String Prairie, USA United States of America')).toBeVisible();
   });
 
   test('should save into local storage the selected city', async ({context, page}) => {
-    await searchAndAddSantiagoCity(page);
+    await searchCity(page, 'String Prairie');
+    await addCityToLayout(page, 'String Prairie');
     await page.waitForResponse(response => response.url().includes('/api/weather-realtime'));
 
     const weatherData = await getLocalStorageItem(context, 'weather-data');
-    const weather = weatherData.find((item) => item.location.name === 'Ciudadsantiago');
+    const weather = weatherData.find((item) => item.location.name === 'String Prairie');
 
     expect(weatherData.length).toBe(2);
     expect(weather).toBeTruthy();
