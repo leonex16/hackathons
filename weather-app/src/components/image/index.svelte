@@ -12,7 +12,7 @@
         break;
 
       case 'error':
-        img.src = '/src/static/unknown-country-flag.png';
+        img.src = '/unknown-country-flag.png';
         break;
 
       default:
@@ -25,10 +25,12 @@
 
 <style>
   img {
-    background-image: url('../../static/loader-img.svg');
+    background-image: url('/loader-img.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     display: inline-block;
+    width: 100%;
+    height: 100%;
   }
 </style>
