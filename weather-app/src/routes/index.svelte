@@ -5,6 +5,7 @@
   import BottomBar from '@/src/components/bottom-bar/index.svelte';
   import HomePage from '@/src/pages/home/index.svelte';
   import SettignsPage from '@/src/pages/settings/index.svelte';
+  import LoaderScreen from '@/src/components/loader-screen/index.svelte';
   import { handleVisibility, settings } from '@/src/store/index';
   import { getFromLocalStorage, saveToLocalStorage } from '@/src/functions/index';
 
@@ -15,6 +16,8 @@
 </script>
 
 <div class={$settings.isDarkModeActive ? 'dark-theme' : 'light-theme'}>
+  <LoaderScreen />
+
   <header class={$handleVisibility.header ? 'show-searchbox' : ''}>
     <SearchBox placeholder="Search city" />
   </header>
