@@ -56,6 +56,16 @@
 </article>
 
 <style>
+    @keyframes init-render {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   .weather-card {
     position: relative;
 
@@ -76,10 +86,10 @@
 
     padding: 1rem;
 
-    transition: all 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out,
-      padding 0.2s ease-in-out, border-radius 0.2s ease-in-out, background 0.2s ease-in-out;
+    animation: init-render 200ms ease-in-out forwards;
+    transition: all 200ms ease-in-out, width 200ms ease-in-out, height 200ms ease-in-out,
+      padding 200ms ease-in-out, border-radius 200ms ease-in-out, background 200ms ease-in-out;
   }
-
   .weather-card > * {
     position: relative;
     z-index: 2;
