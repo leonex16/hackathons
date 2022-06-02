@@ -6,9 +6,9 @@ on:
       - weather-app
 
 jobs:
-  init-ci:
+  init-ci-tests:
     runs-on: ubuntu-20.04
-    environment: Development
+    environment: WEATHER_APP_TEST
     env:
       VITE_API_URL: ${{ secrets.VITE_API_URL }}
       VITE_RAPIDAPI_HOST: ${{ secrets.VITE_RAPIDAPI_HOST }}
