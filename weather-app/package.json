@@ -12,5 +12,8 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "eslint . --fix"
 	},
-	"type": "module"
+	"type": "module",
+	"devDependencies": {
+		"@sveltejs/adapter-cloudflare": "1.0.0-next.23"
+	}
 }
