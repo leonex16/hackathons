@@ -23,10 +23,10 @@ jobs:
           node-version: 18.0.0
       - uses: pnpm/action-setup@v2.2.2
         with:
-          run_install: true
+          run_install: false
           version: 6.0.2
       - name: Install dependencies
-        run: npm ci
+        run: pnpm i
       - name: Run lint script
         run: pnpm run lint:weather
 
@@ -46,7 +46,7 @@ jobs:
           node-version: 18.0.0
       - uses: pnpm/action-setup@v2.2.2
         with:
-          run_install: true
+          run_install: false
           version: 6.0.2
       - name: Run tests
         run: pnpx playwright install && pnpm run test:weather
